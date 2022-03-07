@@ -67,7 +67,7 @@ services:
     image: traefik/whoami
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.traefik.me`)"
       - "traefik.http.routers.whoami.entrypoints=web" 
 
   rabbitmq1:
@@ -79,7 +79,7 @@ services:
         AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.rabbitmq1.rule=Host(`rabbitmq1.localhost`)"
+      - "traefik.http.routers.rabbitmq1.rule=Host(`rabbitmq1.traefik.me`)"
       - "traefik.http.routers.rabbitmq1.entrypoints=web" 
 
   rabbitmq2:
@@ -91,5 +91,5 @@ services:
         AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'      
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.rabbitmq2.rule=Host(`rabbitmq2.localhost`)"
+      - "traefik.http.routers.rabbitmq2.rule=Host(`rabbitmq2.traefik.me`)"
       - "traefik.http.routers.rabbitmq2.entrypoints=web" 
