@@ -51,8 +51,8 @@ services:
         AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'
 
   traefik:
-    image: traefik:v2.6
     container_name: traefik
+    image: traefik:v2.6
     command:
       - "--log.level=DEBUG"
       - "--api.insecure=true"
@@ -63,8 +63,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
   whoami:
-    image: traefik/whoami
     container_name: simple-service
+    image: traefik/whoami
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`mondomaine`)"
@@ -77,6 +77,10 @@ services:
       - ./docker/rabbitmq/etc/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
     environment:    
         AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`mondomaine`)"
+      - "traefik.http.routers.whoami.entrypoints=web" 
 
   rabbitmq2:
     container_name: rabbitmq2
@@ -85,3 +89,7 @@ services:
       - ./docker/rabbitmq/etc/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
     environment:    
         AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'      
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`mondomaine`)"
+      - "traefik.http.routers.whoami.entrypoints=web" 
