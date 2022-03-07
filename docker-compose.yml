@@ -70,14 +70,18 @@ services:
       - "traefik.http.routers.whoami.rule=Host(`mondomaine`)"
       - "traefik.http.routers.whoami.entrypoints=web" 
 
-  simple1:
-    image: trinitronx/python-simplehttpserver
-    container_name: simple_1
+  rabbitmq1:
+    container_name: rabbitmq
+    image: 'rabbitmq:3.9-management-alpine'
     volumes:
-      - ./docker/index:/var/www
+      - ./docker/rabbitmq/etc/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    environment:    
+        AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'
 
-  simple2:
-    image: trinitronx/python-simplehttpserver
-    container_name: simple_2
+  rabbitmq2:
+    container_name: rabbitmq
+    image: 'rabbitmq:3.9-management-alpine'
     volumes:
-      - ./docker/index:/var/www
+      - ./docker/rabbitmq/etc/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    environment:    
+        AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'      
