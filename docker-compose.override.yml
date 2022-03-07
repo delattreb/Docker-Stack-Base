@@ -26,4 +26,11 @@ services:
     ports:
       - "80:80"
       - "8080:8080"
-      
+
+  simple1:
+    ports:
+      - "8081:8080"    
+  
+  simple2:
+    ports:
+      - "8082:8080"        

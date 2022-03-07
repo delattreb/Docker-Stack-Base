@@ -70,10 +70,10 @@ services:
       - "traefik.http.routers.whoami.rule=Host(`mondomaine`)"
       - "traefik.http.routers.whoami.entrypoints=web" 
 
-  helloworld1:
-    image: hello-world
-    container_name: hello_1
+  simple1:
+    image: trinitronx/python-simplehttpserver
+    container_name: simple_1
 
-  helloworld2:
-    image: hello-world
-    container_name: hello_2
+  simple2:
+    image: trinitronx/python-simplehttpserver
+    container_name: simple_2
