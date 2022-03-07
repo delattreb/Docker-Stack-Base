@@ -63,7 +63,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
   whoami:
-    container_name: simple-service
+    container_name: whoami
     image: traefik/whoami
     labels:
       - "traefik.enable=true"
