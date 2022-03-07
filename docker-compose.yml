@@ -1,0 +1,47 @@
+version: "3.8"
+
+volumes:
+  portainer_data:
+
+services:
+  portainer:
+    container_name: portainer
+    hostname: portainer
+    image: portainer/portainer-ce
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  mariadb:
+    container_name: mariadb-api-ref-infra
+    image: mariadb:10.5.8  
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+  
+  phpmyadmin:
+    container_name: phpmyadmin-api-ref-infra
+    image: phpmyadmin/phpmyadmin
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: root
+      PMA_HOST: mariadb
+    volumes:
+      - "/sessions"
+
+  redis:
+    container_name: redis-supervision
+    image: redis:6.0.9 
+    volumes:
+      - redis_data:/data
+      - ./docker/redis/redis.conf:/redis.conf
+    command: [ "redis-server", "/redis.conf" ]  
+  
+  rabbitmq:
+    container_name: rabbitmq-supervision
+    image: 'rabbitmq:3.9-management-alpine'
+    volumes:
+      - ./docker/rabbitmq/etc/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    environment:    
+        AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'
+
+  
