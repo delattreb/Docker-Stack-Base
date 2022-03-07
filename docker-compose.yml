@@ -74,10 +74,10 @@ services:
     image: trinitronx/python-simplehttpserver
     container_name: simple_1
     volumes:
-      - "/tmp/:/var/www"
+      - ./docker/:/var/www
 
   simple2:
     image: trinitronx/python-simplehttpserver
     container_name: simple_2
     volumes:
-      - "/tmp/:/var/www"
+      - ./docker/:/var/www
