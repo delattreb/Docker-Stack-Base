@@ -8,12 +8,6 @@ volumes:
       type: none
       device: ./binding/redis_data
       o: bind     
-  mariadb_data:
-    driver: local
-    driver_opts:
-      type: none
-      device: ./binding/mariadb_data
-      o: bind  
 
 services:
   portainer:
