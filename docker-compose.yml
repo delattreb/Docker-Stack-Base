@@ -25,13 +25,13 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   mariadb:
-    container_name: mariadb-api-ref-infra
+    container_name: mariadb
     image: mariadb:10.5.8  
     environment:
       MYSQL_ROOT_PASSWORD: root
   
   phpmyadmin:
-    container_name: phpmyadmin-api-ref-infra
+    container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
     environment:
       MYSQL_USERNAME: root
@@ -41,7 +41,7 @@ services:
       - "/sessions"
 
   redis:
-    container_name: redis-supervision
+    container_name: redis
     image: redis:6.0.9 
     volumes:
       - redis_data:/data
@@ -49,7 +49,7 @@ services:
     command: [ "redis-server", "/redis.conf" ]  
   
   rabbitmq:
-    container_name: rabbitmq-supervision
+    container_name: rabbitmq
     image: 'rabbitmq:3.9-management-alpine'
     volumes:
       - ./docker/rabbitmq/etc/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
