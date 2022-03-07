@@ -60,7 +60,7 @@ services:
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
   whoami:
     image: traefik/whoami
@@ -74,10 +74,10 @@ services:
     image: trinitronx/python-simplehttpserver
     container_name: simple_1
     volumes:
-      - ./docker/:/var/www
+      - ./docker/index/:/var/www
 
   simple2:
     image: trinitronx/python-simplehttpserver
     container_name: simple_2
     volumes:
-      - ./docker/:/var/www
+      - ./docker/index/:/var/www
